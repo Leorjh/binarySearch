@@ -1,16 +1,19 @@
 public class BinarySearch{
-    static int binarySearch(int[] arrayNum, int num, int begin, int end) {
-        int average = 0;
-        if(begin < end){
-            average = (begin + end) / 2;
+    static int binarySearch(int[] numArray, int num, int left, int right) {
+        if (left <= right) {
+            int middle = left + (right - left) / 2;
+
+            if (numArray[middle] == num) {
+                return middle;
+            }
+
+            if (numArray[middle] > num) {
+                return binarySearch(numArray, num, left, middle - 1);
+            } else {
+                return binarySearch(numArray, num, middle + 1, right);
+            }
         }
-        if(arrayNum[average] == num){
-            return average;
-        }
-        if(arrayNum[average] > num){
-            return binarySearch(arrayNum, num, begin, average-1);
-        }else{
-            return binarySearch(arrayNum, num, average+1, end);
-        }
+
+        return -1;
     }
 }
